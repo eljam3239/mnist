@@ -38,12 +38,12 @@ X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
 X_train /= 255
 X_test /= 255
-print('X_train shape:', X_train.shape) #X_train shape: (60000, 28, 28, 1)
+#print('X_train shape:', X_train.shape) #X_train shape: (60000, 28, 28, 1)
 
 num_category = 10
 y_train = keras.utils.to_categorical(y_train, num_category)
 y_test = keras.utils.to_categorical(y_test, num_category)
-
+print(input_shape)
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3,3),activation='relu', input_shape=input_shape))
 model.add(Conv2D(64, (3,3), activation='relu'))
@@ -61,6 +61,7 @@ model.add(Dense(num_category, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adadelta(), metrics=['accuracy'])
 
+"""
 batch_size = 128
 num_epoch = 10
 model.log = model.fit(X_train, y_train, batch_size=batch_size, epochs=num_epoch, verbose=1, validation_data=(X_test, y_test))
@@ -68,3 +69,4 @@ model.log = model.fit(X_train, y_train, batch_size=batch_size, epochs=num_epoch,
 score = model.evaluate(X_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+"""
